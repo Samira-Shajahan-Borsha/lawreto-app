@@ -2,24 +2,37 @@ import React from 'react';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
+
 
 const Header = () => {
+
+    const activeRouteClassName = 'text-decoration-none text-info fw-semibold';
+
+    const inactiveRouteClassName = 'text-white text-decoration-none fw-semibold';
+
     return (
         <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" sticky="top" className='shadow-sm'>
             <Container>
                 <Navbar.Brand><Link to='/' className='text-decoration-none text-white fw-bolder'>Lawreto</Link></Navbar.Brand>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
-                    <Nav className="me-auto">
-                        <Nav.Link href="#features">Features</Nav.Link>
-                        <Nav.Link href="#pricing">Pricing</Nav.Link>
-                    </Nav>
-                    <Nav>
-                        <Nav.Link href="#deets">More deets</Nav.Link>
-                        <Nav.Link eventKey={2} href="#memes">
-                            Dank memes
-                        </Nav.Link>
+                    <Nav className='ms-auto'>
+                        <div className='me-3'>
+                            <NavLink to='/blogs' className={({ isActive }) =>
+                                isActive ? activeRouteClassName : inactiveRouteClassName
+                            }>Blogs</NavLink>
+                        </div>
+                        <div className='me-3'>
+                            <NavLink to='/about' className={({ isActive }) =>
+                                isActive ? activeRouteClassName : inactiveRouteClassName
+                            }>About</NavLink>
+                        </div>
+                        <div  className='me-3'>
+                            <NavLink to='/login' className={({ isActive }) =>
+                                isActive ? activeRouteClassName : inactiveRouteClassName
+                            }>Login</NavLink>
+                        </div>
                     </Nav>
                 </Navbar.Collapse>
             </Container>
