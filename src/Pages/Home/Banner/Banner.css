@@ -1,3 +1,11 @@
+/* carousel image dark overlay */
+.carousel-item{
+    background-color: black;
+}
+.carousel-item img{
+    opacity: 0.4;
+}
+
 .carousel-item,
 .carousel-item img {
     height: 600px;
