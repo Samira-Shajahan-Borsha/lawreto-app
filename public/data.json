@@ -1,0 +1,23 @@
+[
+    {
+        "id": 1,
+        "name": "Contract Review",
+        "image": "https://i.ibb.co/7QRyJ6d/executive-prepared-sign-contract-1098-3654.jpg",
+        "price": 299,
+        "description": "A Contract Review is an exclusive Goodlawyer micro service designed to provide quick, reliable advice on your contracts and answer any questions related to them. Booking a Contract Review starts with scheduling a time, picking a lawyer, and submitting your document and questions. "
+    },
+    {
+        "id": 2,
+        "name": "Privacy Policy",
+        "image": "https://i.ibb.co/3Fy9n85/privacy-policy-service-documents-terms-use-concept-53876-137636.jpg",
+        "price": 560,
+        "description": "A professionally-drafted Privacy Policy will keep your organization compliant with all relevant privacy laws by explaining why personal information is being collected, what the organization will do with it, how it will be protected, and who it might get shared with."
+    },
+    {
+        "id": 3,
+        "name": "Immigration Viability Assessment",
+        "image": "https://i.ibb.co/8DNznmn/hands-holding-tickets-close-up-23-2149080808.jpg",
+        "price": 399,
+        "description": "Connect with a lawyer to understand your options and determine the best strategy for your immigration needs. An Immigration Viability Assessment will help you understand your options and develop a roadmap to reach your goals."
+    }
+]
