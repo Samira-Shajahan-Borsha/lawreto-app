@@ -8,6 +8,12 @@ const Home = () => {
 
     const services = useLoaderData();
 
+    console.log(services);
+
+    /* if (!Array.isArray(services)) {
+        return <div>Loading...</div>
+    } */
+
     return (
         <>
             <Banner></Banner>
@@ -15,7 +21,7 @@ const Home = () => {
                 <h1 className='mt-lg-5 fs-2 mt-4 fw-bold'>Legal Services</h1>
                 <Row xs={1} md={2} lg={3} className='my-lg-3 g-4 p-3 p-lg-0 '>
                     {
-                        services.map(service => <Service
+                        services?.length > 0 && services?.map(service => <Service
                             key={service.id}
                             service={service}
                         ></Service>)
