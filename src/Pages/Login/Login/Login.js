@@ -41,6 +41,9 @@ const Login = () => {
                         position: "top-center",
                     });
                 }
+                if(errorMessage.includes('(auth/wrong-password)')){
+                    setErrors({...errors, passwordError: 'You have entered a wrong password'});
+                }
             });
     }
 

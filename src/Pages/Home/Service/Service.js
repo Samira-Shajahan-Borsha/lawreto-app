@@ -7,9 +7,9 @@ const Service = ({ service }) => {
 
     const { id, name, image, price, description } = service;
 
-    
+
     const navigate = useNavigate();
-    
+
     /* const [services, setServices] = useState([]);
     useEffect(() => {
         fetch('data.json')
@@ -22,7 +22,7 @@ const Service = ({ service }) => {
         // const selectedService = services.find(se => se.id === id);
         // console.log(selectedService);
 
-        navigate(`/service-details`);
+        navigate(`/service-details/${id}`);
     }
 
     return (

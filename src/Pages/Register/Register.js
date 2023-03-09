@@ -2,13 +2,16 @@ import React, { useContext, useState } from 'react';
 import { Container } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider';
 import { FaExclamationCircle } from "react-icons/fa";
+import { toast } from 'react-hot-toast';
 
 const Register = () => {
 
     const { createUser } = useContext(AuthContext);
+
+    const navigate = useNavigate();
 
     const [userInfo, setUserInfo] = useState({
         name: '',
@@ -27,8 +30,31 @@ const Register = () => {
     const handleSubmit = event => {
 
         event.preventDefault();
-        const form = event.target;
 
+        const form = event.target;
+        // const name = form.name.value;
+        const email = form.email.value;
+        const password = form.password.value;
+        const confirmPassword = form.confirmPassword.value;
+
+        console.log(email, password, confirmPassword);
+
+        createUser(email, password)
+            .then(userCredential => {
+                const user = userCredential.user;
+                console.log(user);
+                form.reset();
+                navigate('/login');
+            })
+            .catch(error => {
+                const errorMessage = error.message;
+                if (errorMessage.includes('auth/email-already-in-use')) {
+                    toast.error('This email is already connected to an account.', {
+                        id: 102,
+                        position: "top-center",
+                    });
+                }
+            })
     }
 
     const handleNameBlur = nameInput => {
@@ -82,7 +108,7 @@ const Register = () => {
     const handleConfirmPasswordBlur = confirmPasswordInput => {
 
         if (confirmPasswordInput === '') {
-            setErrors({...errors, confirmPasswordError: "You need to confirm your password."})
+            setErrors({ ...errors, confirmPasswordError: "You need to confirm your password." })
         }
         else if (userInfo.password !== confirmPasswordInput) {
             setErrors({ ...errors, confirmPasswordError: "Password don't match." });
@@ -129,7 +155,7 @@ const Register = () => {
                     }
                 </Form.Group>
                 <Button variant="success" className='fw-semibold  rounded-pill text-dark px-lg-5 py-lg-2 px-4 py-2' type="submit">
-                    Register
+                   REGISTER
                 </Button>
             </Form>
             <p className='mt-3 fs-5'>Have an account? <Link to='/login' className='text-decoration-none text-success'>Log in. </Link></p>
