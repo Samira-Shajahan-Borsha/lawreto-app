@@ -18,8 +18,8 @@ const Home = () => {
         <>
             <Banner></Banner>
             <Container>
-                <h1 className='mt-lg-5 fs-2 mt-4 fw-bold'>Legal Services</h1>
-                <Row xs={1} md={2} lg={3} className='my-lg-3 g-4 p-3 p-lg-0 '>
+                <h1 className='mt-lg-5 fs-2 mt-4 fw-bold text-center'>Legal Services</h1>
+                <Row xs={1} md={2} lg={3} className='my-lg-3 g-5 p-3 p-lg-0 '>
                     {
                         services?.length > 0 && services?.map(service => <Service
                             key={service.id}

@@ -7,14 +7,14 @@ import { Link, NavLink } from 'react-router-dom';
 
 const Header = () => {
 
-    const activeRouteClassName = 'text-decoration-none text-info fw-semibold';
+    const activeRouteClassName = 'text-decoration-none text-success fw-semibold fs-5';
 
-    const inactiveRouteClassName = 'text-white text-decoration-none fw-semibold';
+    const inactiveRouteClassName = 'text-white text-decoration-none fw-semibold fs-5';
 
     return (
         <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" sticky="top" className='shadow-sm p-3'>
             <Container>
-                <Navbar.Brand><Link to='/' className='text-decoration-none text-white fw-bolder fs-4'>Lawreto</Link></Navbar.Brand>
+                <Navbar.Brand><Link to='/' className='text-decoration-none text-white fw-bolder fs-3'>Lawreto</Link></Navbar.Brand>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className='ms-auto'>

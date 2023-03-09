@@ -35,7 +35,7 @@ const Service = ({ service }) => {
                         {description}
                     </Card.Text>
                 </Card.Body>
-                <Card.Text className='fs-5'>
+                <Card.Text className='fs-5 text-center'>
                     Starting at: $<span className='fw-bolder'>{price}</span>
                 </Card.Text>
                 <Button className='border-0 rounded-0' onClick={hanldeServiceDetails} variant="dark">Book Service</Button>
