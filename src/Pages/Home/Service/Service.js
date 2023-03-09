@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Button, Col } from 'react-bootstrap';
 import Card from 'react-bootstrap/Card';
 import { useNavigate } from 'react-router-dom';
@@ -7,22 +7,12 @@ const Service = ({ service }) => {
 
     const { id, name, image, price, description } = service;
 
-
     const navigate = useNavigate();
-
-    /* const [services, setServices] = useState([]);
-    useEffect(() => {
-        fetch('data.json')
-            .then(res => res.json())
-            .then(data => setServices(data));
-    }, []) */
 
     const hanldeServiceDetails = () => {
 
-        // const selectedService = services.find(se => se.id === id);
-        // console.log(selectedService);
-
         navigate(`/service-details/${id}`);
+
     }
 
     return (
@@ -30,8 +20,8 @@ const Service = ({ service }) => {
             <Card className='h-100 rounded-0'>
                 <Card.Img className='img-fluid rounded-0' variant="top" src={image} />
                 <Card.Body>
-                    <Card.Title>{name}</Card.Title>
-                    <Card.Text>
+                    <Card.Title className='text-center'>{name}</Card.Title>
+                    <Card.Text className='text-center'>
                         {description}
                     </Card.Text>
                 </Card.Body>

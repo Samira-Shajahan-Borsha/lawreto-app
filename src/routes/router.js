@@ -15,11 +15,24 @@ export const router = createBrowserRouter([
             {
                 path: '/',
                 element: <Home></Home>,
-                loader: () => fetch('data.json')
+                loader: () => fetch('/data.json').then(res => res.json())
             },
             {
                 path: '/service-details/:id',
                 element: <ServiceDetails></ServiceDetails>,
+                loader: async ({ params }) => {
+                    
+                    const response = await fetch('/data.json');
+                    const data = await response.json();
+
+                    const service = data.find(d => d.id === parseFloat(params.id));
+                    if (service) {
+                        return service;
+                    }
+                    else {
+                        return null;
+                    }
+                }
             },
             {
                 path: '/login',
