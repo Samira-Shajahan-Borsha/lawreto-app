@@ -21,7 +21,11 @@ const AuthProvider = ({ children }) => {
         return signInWithPopup(auth, provider);
     }
 
-    const authInfo = { createUser, loginUser, signInWithGoogle }
+    const signInWithGithub = provider => {
+        return signInWithPopup(auth, provider);
+    }
+
+    const authInfo = { createUser, loginUser, signInWithGoogle, signInWithGithub }
 
     return (
         <AuthContext.Provider value={authInfo}>

@@ -5,7 +5,7 @@ import Form from 'react-bootstrap/Form';
 import { Link } from 'react-router-dom';
 
 import { AuthContext } from '../../../contexts/AuthProvider';
-import { GoogleAuthProvider } from "firebase/auth";
+import { GithubAuthProvider, GoogleAuthProvider } from "firebase/auth";
 
 import { FaExclamationCircle, FaGithub } from 'react-icons/fa';
 import { FcGoogle } from "react-icons/fc";
@@ -13,7 +13,7 @@ import { toast } from 'react-hot-toast';
 
 const Login = () => {
 
-    const { loginUser, signInWithGoogle } = useContext(AuthContext);
+    const { loginUser, signInWithGoogle, signInWithGithub } = useContext(AuthContext);
 
     const [userInfo, setUserInfo] = useState({
         email: '', password: ''
@@ -25,6 +25,8 @@ const Login = () => {
 
     const googleProvider = new GoogleAuthProvider();
 
+    const githubProvider = new GithubAuthProvider();
+
 
     //Sign in with Google
     const handleGoogleSignIn = () => {
@@ -33,15 +35,35 @@ const Login = () => {
             .then(result => {
                 const user = result.user;
                 console.log(user);
-                toast.success('Log in successful', {
-                    id: 101,
+                toast.success('Log in successful with google', {
+                    id: 105,
                     position: "top-center",
                 })
             })
             .catch(error => {
+                console.error(error);
                 const errorMessage = error.message;
-                console.log(errorMessage);
             })
+    }
+
+
+    //sign in with Github
+    const handleGithubSignIn = () => {
+
+        signInWithGithub(githubProvider)
+            .then(result => {
+                const user = result.user;
+                console.log(user);
+                toast.success('Log in successful with github', {
+                    id: 105,
+                    position: "top-center",
+                })
+            })
+            .catch(error => {
+                console.error(error);
+                const errorMessage = error.message;
+            })
+
     }
 
     //sign in with Email & password
@@ -111,7 +133,7 @@ const Login = () => {
                 <Button onClick={handleGoogleSignIn} variant="light" className='text-muted fw-bolder fs-6 border w-75 border-dark'><FcGoogle className='fs-5 me-3'></FcGoogle>CONTINUE WITH GOOGLE</Button>
             </div>
             <div className='d-grid text-center w-full github-btn'>
-                <Button variant="dark" className='fw-bolder fs-6 border w-75 border-dark'><FaGithub className='fs-5 me-3'></FaGithub>CONTINUE WITH GITHUB</Button>
+                <Button onClick={handleGithubSignIn} variant="dark" className='fw-bolder fs-6 border w-75 border-dark'><FaGithub className='fs-5 me-3'></FaGithub>CONTINUE WITH GITHUB</Button>
             </div>
             <hr />
             <h1 className='fs-5 text-success mb-3'>To continue, please log in!</h1>
