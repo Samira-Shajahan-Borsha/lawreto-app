@@ -2,14 +2,18 @@ import React, { useContext, useState } from 'react';
 import { Container } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import { toast } from 'react-hot-toast';
-import { FaExclamationCircle } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+
 import { AuthContext } from '../../../contexts/AuthProvider';
+import { GoogleAuthProvider } from "firebase/auth";
+
+import { FaExclamationCircle, FaGithub } from 'react-icons/fa';
+import { FcGoogle } from "react-icons/fc";
+import { toast } from 'react-hot-toast';
 
 const Login = () => {
 
-    const { loginUser } = useContext(AuthContext);
+    const { loginUser, signInWithGoogle } = useContext(AuthContext);
 
     const [userInfo, setUserInfo] = useState({
         email: '', password: ''
@@ -19,6 +23,28 @@ const Login = () => {
         emailError: '', passwordError: ''
     });
 
+    const googleProvider = new GoogleAuthProvider();
+
+
+    //Sign in with Google
+    const handleGoogleSignIn = () => {
+
+        signInWithGoogle(googleProvider)
+            .then(result => {
+                const user = result.user;
+                console.log(user);
+                toast.success('Log in successful', {
+                    id: 101,
+                    position: "top-center",
+                })
+            })
+            .catch(error => {
+                const errorMessage = error.message;
+                console.log(errorMessage);
+            })
+    }
+
+    //sign in with Email & password
     const handleSubmit = e => {
 
         e.preventDefault();
@@ -41,8 +67,8 @@ const Login = () => {
                         position: "top-center",
                     });
                 }
-                if(errorMessage.includes('(auth/wrong-password)')){
-                    setErrors({...errors, passwordError: 'You have entered a wrong password'});
+                if (errorMessage.includes('(auth/wrong-password)')) {
+                    setErrors({ ...errors, passwordError: 'You have entered a wrong password' });
                 }
             });
     }
@@ -65,7 +91,7 @@ const Login = () => {
     const handlePasswordBlur = (passwordInput) => {
 
         if (passwordInput === '') {
-            setErrors({...errors, passwordError: 'Please enter your password.'})
+            setErrors({ ...errors, passwordError: 'Please enter your password.' })
         }
         else if (!/(?=^.{6,}$)/.test(passwordInput)) {
             setErrors({ ...errors, passwordError: 'Password should be 6 characters long or more.' });
@@ -81,6 +107,13 @@ const Login = () => {
 
     return (
         <Container className='w-50 mx-auto my-5'>
+            <div className='d-grid text-center w-full google-btn mb-3'>
+                <Button onClick={handleGoogleSignIn} variant="light" className='text-muted fw-bolder fs-6 border w-75 border-dark'><FcGoogle className='fs-5 me-3'></FcGoogle>CONTINUE WITH GOOGLE</Button>
+            </div>
+            <div className='d-grid text-center w-full github-btn'>
+                <Button variant="dark" className='fw-bolder fs-6 border w-75 border-dark'><FaGithub className='fs-5 me-3'></FaGithub>CONTINUE WITH GITHUB</Button>
+            </div>
+            <hr />
             <h1 className='fs-5 text-success mb-3'>To continue, please log in!</h1>
             <Form onSubmit={handleSubmit} >
                 <Form.Group className="mb-3" controlId="formBasicEmail">

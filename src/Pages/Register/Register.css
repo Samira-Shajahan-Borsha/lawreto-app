@@ -1,0 +1,12 @@
+.google-btn,
+.github-btn {
+    justify-items: center;
+}
+
+/* Extra small devices (phones, 600px and down) */
+/* @media only screen and (max-width: 767px) {
+    .container {   
+        width: 100%;
+    }
+} */
+
