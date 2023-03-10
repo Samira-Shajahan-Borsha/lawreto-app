@@ -11,9 +11,10 @@ import { FaExclamationCircle, FaGithub } from 'react-icons/fa';
 import { FcGoogle } from "react-icons/fc";
 import { toast } from 'react-hot-toast';
 
+
 const Login = () => {
 
-    const { loginUser, signInWithGoogle, signInWithGithub } = useContext(AuthContext);
+    const { loginUser, signInWithGoogle, signInWithGithub, passwordReset } = useContext(AuthContext);
 
     const [userInfo, setUserInfo] = useState({
         email: '', password: ''
@@ -32,6 +33,26 @@ const Login = () => {
     const location = useLocation();
 
     const from = location.state?.from?.pathname || "/";
+
+
+    const handlPasswordReset = () => {
+        passwordReset(userInfo.email)
+            .then(() => { 
+                toast.success('Password reset email sent. Please check your password', {
+                    id: 105,
+                    position: "top-center",
+                });
+            })
+            .catch(error => {
+                const errorMessage = error.message;
+                if (errorMessage.includes('auth/missing-email')) {
+                    toast.error('You have to enter your email to reset your password', {
+                        id: 105,
+                        position: "top-center",
+                    });
+                }
+            })
+    }
 
     //Sign in with Google
     const handleGoogleSignIn = () => {
@@ -164,6 +185,7 @@ const Login = () => {
                         errors?.passwordError && <p className='text-danger'><FaExclamationCircle className='me-1'></FaExclamationCircle>{errors?.passwordError}</p>
                     }
                 </Form.Group>
+                <p className='fs-6 '>Forget your Password? <Link onClick={handlPasswordReset} className='text-dark password-reset'>Please reset</Link></p>
                 <Button variant="success" className='fw-semibold  rounded-pill text-dark px-lg-5 py-lg-2 px-4 py-2' type="submit">
                     LOG IN
                 </Button>
