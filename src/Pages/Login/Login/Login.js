@@ -31,8 +31,6 @@ const Login = () => {
 
     const location = useLocation();
 
-    console.log(location);
-
     const from = location.state?.from?.pathname || "/";
 
     //Sign in with Google
@@ -42,7 +40,6 @@ const Login = () => {
             .then(result => {
                 const user = result.user;
                 console.log(user);
-                navigate('/');
                 navigate(from, { replace: true });
                 toast.success('Log in successful with google', {
                     id: 105,
@@ -51,7 +48,7 @@ const Login = () => {
             })
             .catch(error => {
                 console.error(error);
-                const errorMessage = error.message;
+                // const errorMessage = error.message;
             })
     }
 
@@ -63,7 +60,6 @@ const Login = () => {
             .then(result => {
                 const user = result.user;
                 console.log(user);
-                navigate('/');
                 navigate(from, { replace: true });
                 toast.success('Log in successful with github', {
                     id: 105,
@@ -72,7 +68,7 @@ const Login = () => {
             })
             .catch(error => {
                 console.error(error);
-                const errorMessage = error.message;
+                // const errorMessage = error.message;
             })
 
     }

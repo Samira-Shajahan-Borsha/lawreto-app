@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Button, NavDropdown } from 'react-bootstrap';
+import { NavDropdown } from 'react-bootstrap';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
@@ -12,8 +12,6 @@ import { FaUser } from "react-icons/fa";
 const Header = () => {
 
     const { user, logOut } = useContext(AuthContext);
-
-    console.log('inside header', user);
 
     const activeRouteClassName = 'text-decoration-none text-success fw-semibold fs-5';
 
