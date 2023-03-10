@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react';
 import { Container } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 import { AuthContext } from '../../../contexts/AuthProvider';
 import { GithubAuthProvider, GoogleAuthProvider } from "firebase/auth";
@@ -29,6 +29,12 @@ const Login = () => {
 
     const navigate = useNavigate();
 
+    const location = useLocation();
+
+    console.log(location);
+
+    const from = location.state?.from?.pathname || "/";
+
     //Sign in with Google
     const handleGoogleSignIn = () => {
 
@@ -37,6 +43,7 @@ const Login = () => {
                 const user = result.user;
                 console.log(user);
                 navigate('/');
+                navigate(from, { replace: true });
                 toast.success('Log in successful with google', {
                     id: 105,
                     position: "top-center",
@@ -57,6 +64,7 @@ const Login = () => {
                 const user = result.user;
                 console.log(user);
                 navigate('/');
+                navigate(from, { replace: true });
                 toast.success('Log in successful with github', {
                     id: 105,
                     position: "top-center",
@@ -81,7 +89,7 @@ const Login = () => {
             .then((userCredential) => {
                 const user = userCredential.user;
                 console.log('login', user);
-                navigate('/');
+                navigate(from, { replace: true });
                 toast.success('Log in successful', {
                     id: 105,
                     position: "top-center",

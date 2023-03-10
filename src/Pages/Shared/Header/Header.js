@@ -13,7 +13,7 @@ const Header = () => {
 
     const { user, logOut } = useContext(AuthContext);
 
-    console.log('inside header',user);
+    console.log('inside header', user);
 
     const activeRouteClassName = 'text-decoration-none text-success fw-semibold fs-5';
 
