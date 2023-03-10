@@ -5,7 +5,7 @@ import Form from 'react-bootstrap/Form';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider';
 
-import { FaExclamationCircle} from "react-icons/fa";
+import { FaExclamationCircle } from "react-icons/fa";
 
 import { toast } from 'react-hot-toast';
 import './Register.css';
@@ -15,7 +15,7 @@ const Register = () => {
 
     const { createUser } = useContext(AuthContext);
 
-    const navigate = useNavigate();    
+    const navigate = useNavigate();
 
     const [userInfo, setUserInfo] = useState({
         name: '',
@@ -49,6 +49,10 @@ const Register = () => {
                 console.log(user);
                 form.reset();
                 navigate('/login');
+                toast.success('Account registration successful. Please log in.', {
+                    id: 107,
+                    position: "top-center",
+                });
             })
             .catch(error => {
                 const errorMessage = error.message;
@@ -123,7 +127,7 @@ const Register = () => {
     }
 
     return (
-        <Container className='w-50 mx-auto my-5'>            
+        <Container className='w-50 mx-auto my-5'>
             <h1 className='fs-5 text-success mb-3'>Register with your email address!</h1>
             <Form onSubmit={handleSubmit} >
                 <Form.Group className="mb-3" controlId="formBasicEmail">

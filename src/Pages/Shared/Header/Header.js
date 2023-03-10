@@ -1,9 +1,9 @@
 import React, { useContext } from 'react';
-import { Button } from 'react-bootstrap';
+import { Button, NavDropdown } from 'react-bootstrap';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../contexts/AuthProvider';
 
 import { FaUser } from "react-icons/fa";
@@ -13,15 +13,19 @@ const Header = () => {
 
     const { user, logOut } = useContext(AuthContext);
 
-    console.log(user, logOut);
+    console.log('inside header',user);
 
     const activeRouteClassName = 'text-decoration-none text-success fw-semibold fs-5';
 
     const inactiveRouteClassName = 'text-white text-decoration-none fw-semibold fs-5';
 
+    const navigate = useNavigate();
+
     const handleLogOut = () => {
         logOut()
-            .then(() => { })
+            .then(() => {
+                navigate('/login');
+            })
             .catch((error) => { })
     }
 
@@ -42,30 +46,26 @@ const Header = () => {
                                 isActive ? activeRouteClassName : inactiveRouteClassName
                             }>About</NavLink>
                         </div>
-
                         {
-                            user?.photoURL
-                                ?
-                                <div className='me-3'>
-                                    <Link>
-                                        <img className='rounded-circle text-decoration-none' style={{ width: '30px' }} src={user?.photoURL} alt="profile-pic" />
-                                    </Link>
-                                </div>
-                                :
-                                <div className='me-3'>
-                                    <Link>
-                                        <FaUser className='text-muted fs-5'></FaUser>
-                                    </Link>
-                                </div>
-                        }
-                        {
-                            user?.uid
-                                ?
-                                <div className='me-3'>
-                                    <Link to='/login'>
-                                        <Button onClick={handleLogOut} variant="dark" className={activeRouteClassName}>Log Out</Button>
-                                    </Link>
-                                </div>
+                            user?.uid ?
+                                <NavDropdown
+                                    id="nav-dropdown-dark-example"
+                                    title={
+                                        user?.photoURL ?
+                                            <>
+                                                <img className='rounded-circle text-decoration-none' style={{ width: '30px' }} src={user?.photoURL ? user?.photoURL : 'N/A'} alt="profile-pic" />
+                                            </>
+                                            :
+                                            <>
+                                                <FaUser className='text-muted fs-5'></FaUser>
+                                            </>
+                                    }
+                                    menuVariant="dark"
+                                >
+                                    <NavDropdown.Item onClick={handleLogOut} >
+                                        Log Out
+                                    </NavDropdown.Item>
+                                </NavDropdown>
                                 :
                                 <div className='me-3'>
                                     <NavLink to='/login' className={({ isActive }) =>
@@ -73,6 +73,7 @@ const Header = () => {
                                     }>Login</NavLink>
                                 </div>
                         }
+
                     </Nav>
                 </Navbar.Collapse>
             </Container>
