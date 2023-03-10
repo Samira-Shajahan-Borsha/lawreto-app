@@ -8,7 +8,7 @@ const Home = () => {
 
     const services = useLoaderData();
 
-    console.log(services);
+    // console.log(services);
 
     /* if (!Array.isArray(services)) {
         return <div>Loading...</div>
