@@ -37,7 +37,7 @@ const Login = () => {
 
     const handlPasswordReset = () => {
         passwordReset(userInfo.email)
-            .then(() => { 
+            .then(() => {
                 toast.success('Password reset email sent. Please check your password', {
                     id: 105,
                     position: "top-center",
@@ -69,7 +69,6 @@ const Login = () => {
             })
             .catch(error => {
                 console.error(error);
-                // const errorMessage = error.message;
             })
     }
 
@@ -89,7 +88,6 @@ const Login = () => {
             })
             .catch(error => {
                 console.error(error);
-                // const errorMessage = error.message;
             })
 
     }
@@ -106,12 +104,20 @@ const Login = () => {
             .then((userCredential) => {
                 const user = userCredential.user;
                 console.log('login', user);
-                navigate(from, { replace: true });
-                toast.success('Log in successful', {
-                    id: 105,
-                    position: "top-center",
-                });
                 form.reset();
+                if (user.emailVerified) {
+                    navigate(from, { replace: true });
+                    toast.success('Log in successful', {
+                        id: 105,
+                        position: "top-center",
+                    });
+                }
+                else {
+                    toast.error('Your email is not verified. Please verify your email.', {
+                        id: 105,
+                        position: "top-center",
+                    });
+                }
             })
             .catch(error => {
                 console.error(error);
@@ -185,7 +191,7 @@ const Login = () => {
                         errors?.passwordError && <p className='text-danger'><FaExclamationCircle className='me-1'></FaExclamationCircle>{errors?.passwordError}</p>
                     }
                 </Form.Group>
-                <p className='fs-6 '>Forget your Password? <Link onClick={handlPasswordReset} className='text-dark password-reset'>Please reset</Link></p>
+                <p className='fs-6'>Forget your Password? <Link onClick={handlPasswordReset} className='text-dark fs-6'>Please reset.</Link></p>
                 <Button variant="success" className='fw-semibold  rounded-pill text-dark px-lg-5 py-lg-2 px-4 py-2' type="submit">
                     LOG IN
                 </Button>
