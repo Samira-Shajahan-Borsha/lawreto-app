@@ -60,7 +60,7 @@ const Login = () => {
                 toast.success('Log in successful with github', {
                     id: 105,
                     position: "top-center",
-                })
+                });
             })
             .catch(error => {
                 console.error(error);
@@ -80,8 +80,12 @@ const Login = () => {
         loginUser(email, password)
             .then((userCredential) => {
                 const user = userCredential.user;
-                console.log('login',user);
+                console.log('login', user);
                 navigate('/');
+                toast.success('Log in successful', {
+                    id: 105,
+                    position: "top-center",
+                });
                 form.reset();
             })
             .catch(error => {
@@ -93,7 +97,7 @@ const Login = () => {
                         position: "top-center",
                     });
                 }
-                if (errorMessage.includes('(auth/wrong-password)')) {
+                if (errorMessage.includes('auth/wrong-password')) {
                     setErrors({ ...errors, passwordError: 'You have entered a wrong password' });
                 }
             });

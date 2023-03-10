@@ -6,6 +6,8 @@ import Navbar from 'react-bootstrap/Navbar';
 import { Link, NavLink } from 'react-router-dom';
 import { AuthContext } from '../../../contexts/AuthProvider';
 
+import { FaUser } from "react-icons/fa";
+
 
 const Header = () => {
 
@@ -40,6 +42,22 @@ const Header = () => {
                                 isActive ? activeRouteClassName : inactiveRouteClassName
                             }>About</NavLink>
                         </div>
+
+                        {
+                            user?.photoURL
+                                ?
+                                <div className='me-3'>
+                                    <Link>
+                                        <img className='rounded-circle text-decoration-none' style={{ width: '30px' }} src={user?.photoURL} alt="profile-pic" />
+                                    </Link>
+                                </div>
+                                :
+                                <div className='me-3'>
+                                    <Link>
+                                        <FaUser className='text-muted fs-5'></FaUser>
+                                    </Link>
+                                </div>
+                        }
                         {
                             user?.uid
                                 ?
@@ -47,9 +65,6 @@ const Header = () => {
                                     <Link to='/login'>
                                         <Button onClick={handleLogOut} variant="dark" className={activeRouteClassName}>Log Out</Button>
                                     </Link>
-                                    {/* <NavLink to='/login' className={({ isActive }) =>
-                                        isActive ? activeRouteClassName : inactiveRouteClassName
-                                    }>log out</NavLink> */}
                                 </div>
                                 :
                                 <div className='me-3'>
