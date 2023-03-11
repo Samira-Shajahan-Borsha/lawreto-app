@@ -6,7 +6,7 @@ const Footer = () => {
     const date = new Date().getFullYear();
 
     return (
-        <footer className='bg-dark d-flex justify-content-evenly align-items-center flex-column'>
+        <footer className='bg-dark d-flex justify-content-evenly align-items-center flex-column mt-5'>
             <div className='text-white mb-2 fs-1'>
                 <FaFacebookSquare  className='me-2'></FaFacebookSquare>
                 <FaTwitterSquare className='me-2'></FaTwitterSquare >

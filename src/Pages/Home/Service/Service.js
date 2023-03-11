@@ -17,7 +17,9 @@ const Service = ({ service }) => {
 
     return (
         <Col>
-            <Card className='h-100 rounded-0'>
+            <Card data-aos="flip-left"
+                    data-aos-easing="ease-out-cubic"
+                    data-aos-duration="2000" className='h-100 rounded-0'>
                 <Card.Img className='img-fluid rounded-0' variant="top" src={image} />
                 <Card.Body>
                     <Card.Title className='text-center'>{name}</Card.Title>
