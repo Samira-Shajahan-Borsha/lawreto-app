@@ -4,10 +4,11 @@ import About from "../Pages/About/About";
 import Blogs from "../Pages/Blogs/Blogs";
 import Home from "../Pages/Home/Home/Home";
 import Login from "../Pages/Login/Login/Login";
-import NotFound from "../Pages/NotFound/NotFound/NotFound";
 import Register from "../Pages/Register/Register";
 import ServiceDetails from "../Pages/ServiceDetails/ServiceDetails";
 import PrivateRoute from "./PrivateRoute";
+import NotFound from "../../src/Pages/NotFound/NotFound/NotFound";
+
 
 export const router = createBrowserRouter([
     {
@@ -51,11 +52,9 @@ export const router = createBrowserRouter([
             {
                 path: '/about',
                 element: <About></About>
-            },
-
+            }
         ]
-    },
-    {
+    }, {
         path: '*',
         element: <NotFound></NotFound>
     }

@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react';
 import { Container } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider';
 
 import { FaExclamationCircle } from "react-icons/fa";
@@ -13,7 +13,9 @@ import './Register.css';
 
 const Register = () => {
 
-    const { createUser, verifyEmail } = useContext(AuthContext);
+    const { createUser } = useContext(AuthContext);
+
+    const navigate = useNavigate();
 
     const [userInfo, setUserInfo] = useState({
         name: '',
@@ -29,14 +31,6 @@ const Register = () => {
         confirmPasswordError: ''
     });
 
-    // Email Verification
-    const handleVerificationEmail = () => {
-        verifyEmail()
-            .then(() => { })
-            .catch(() => { })
-    }
-
-    //register with email & password
     const handleSubmit = event => {
 
         event.preventDefault();
@@ -54,8 +48,8 @@ const Register = () => {
                 const user = userCredential.user;
                 console.log(user);
                 form.reset();
-                handleVerificationEmail();
-                toast.success('Account registration successful. Please verify your email address.', {
+                navigate('/login');
+                toast.success('Account registration successful. Please log in.', {
                     id: 107,
                     position: "top-center",
                 });
@@ -71,8 +65,6 @@ const Register = () => {
             })
     }
 
-    /*  Validate register form input field */
-
     const handleNameBlur = nameInput => {
 
         if (nameInput === '') {
@@ -83,6 +75,7 @@ const Register = () => {
             setErrors({ ...errors, nameError: '' });
         }
     }
+
 
     const handleEmailBlur = (emailInput) => {
 
