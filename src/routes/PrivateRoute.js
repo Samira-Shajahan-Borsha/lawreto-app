@@ -10,7 +10,12 @@ const PrivateRoute = ({ children }) => {
     const location = useLocation();
 
     if (loading) {
-        return <Spinner animation="border" />;
+        return <div className="vh-100 d-flex justify-content-center align-items-center">
+            <Spinner animation="border" variant="dark" />
+            <Spinner animation="border" variant="dark" />
+            <Spinner animation="border" variant="dark" />
+            <Spinner animation="border" variant="dark" />
+        </div>;
     }
 
     if (!user) {
