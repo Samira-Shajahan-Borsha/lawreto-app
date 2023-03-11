@@ -1,6 +1,5 @@
 import React, { useContext, useState } from 'react';
 import { Button, Container, Form } from 'react-bootstrap';
-import { toast } from 'react-hot-toast';
 import { FaExclamationCircle } from 'react-icons/fa';
 import { useLoaderData } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider';
@@ -12,13 +11,14 @@ const ServiceDetails = () => {
     const [userInfo, setUserInfo] = useState({
         name: '',
         address: '',
-        mmobileNumber: ''
+        mobileNumber: ''
     });
     const [errors, setErrors] = useState({
         nameError: '',
         addressError: '',
-        mmobileNumberError: ''
+        mobileNumberError: ''
     });
+
 
     console.log(user);
 
@@ -36,8 +36,6 @@ const ServiceDetails = () => {
         const address = form.address.value;
 
         form.reset();
-
-        
 
         console.log(name, address);
     }
@@ -64,10 +62,31 @@ const ServiceDetails = () => {
         }
     }
 
+    const handleMobileNumberBlur = mobileNumberInput => {
+        
+        const numberRegex = /^01[3-9][0-9]{8}$/;
+
+        const validMobileNumber = numberRegex.test(mobileNumberInput);
+
+        console.log(validMobileNumber);
+
+        if (mobileNumberInput === '') {
+            setErrors({ ...errors, mobileNumberError: 'You need to enter your mobile number.' });
+        }
+        else if (!validMobileNumber) {
+            setErrors({ ...errors, mobileNumberError: 'Enter a valid mobile number' });
+            setUserInfo({ ...userInfo, mobileNumber: '' });
+        }
+        else {
+            setUserInfo({ ...userInfo, mobileNumber: mobileNumberInput });
+            setErrors({ ...errors, mobileNumberError: '' });
+        }
+    }
+
     return (
-        <Container className='my-5'>
+        <Container className='mx-lg-auto my-5 px-lg-5'>
             <h1 className='fs-3 text-success mb-3 text-center'>{name}</h1>
-            <Form onSubmit={handleSubmit} >
+            <Form onSubmit={handleSubmit} className='mx-lg-5 px-lg-5'>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label className='fs-6 fw-semibold'>User Name</Form.Label>
                     <Form.Control onBlur={(event) => handleNameBlur(event.target.value)} type="text" name='name' placeholder="Enter your name" className='border-dark rounded-0' required />
@@ -88,10 +107,13 @@ const ServiceDetails = () => {
                         errors?.addressError && <p className='text-danger'><FaExclamationCircle className='me-1'></FaExclamationCircle>{errors?.addressError}</p>
                     }
                 </Form.Group>
-                {/* <Form.Group className="mb-3" controlId="formBasicPassword">
-                    <Form.Label className='fs-6 fw-semibold'>Mobile Number</Form.Label>
-
-                </Form.Group> */}
+                <Form.Group className="mb-3" controlId="formBasicPassword">
+                    <Form.Label className='fs-6 fw-semibold'>Mobile Number</Form.Label> <br />
+                    <input type="tel" onBlur={(event) => handleMobileNumberBlur(event.target.value)} name="mmobileNumber" pattern="^01[3-9][0-9]{8}$" id="" className='w-50 form-control border-dark rounded-0' required />
+                    {
+                        errors?.mobileNumberError && <p className='text-danger'><FaExclamationCircle className='me-1'></FaExclamationCircle>{errors?.mobileNumberError}</p>
+                    }
+                </Form.Group>
                 <Button variant="success" className='fw-semibold  rounded-pill text-dark px-lg-5 py-lg-2 px-4 py-2' type="submit">
                     BOOK YOUR SERVICE NOW
                 </Button>
