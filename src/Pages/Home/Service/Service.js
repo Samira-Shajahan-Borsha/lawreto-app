@@ -3,6 +3,8 @@ import { Button, Col } from 'react-bootstrap';
 import Card from 'react-bootstrap/Card';
 import { useNavigate } from 'react-router-dom';
 
+import './Service.css';
+
 const Service = ({ service }) => {
 
     const { id, name, image, price, description } = service;
@@ -18,8 +20,8 @@ const Service = ({ service }) => {
     return (
         <Col>
             <Card data-aos="flip-left"
-                    data-aos-easing="ease-out-cubic"
-                    data-aos-duration="2000" className='h-100 rounded-0'>
+                data-aos-easing="ease-out-cubic"
+                data-aos-duration="2000" className='h-100 rounded-0'>
                 <Card.Img className='img-fluid rounded-0' variant="top" src={image} />
                 <Card.Body>
                     <Card.Title className='text-center'>{name}</Card.Title>

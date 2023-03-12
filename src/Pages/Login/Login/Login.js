@@ -11,6 +11,8 @@ import { FaExclamationCircle, FaGithub } from 'react-icons/fa';
 import { FcGoogle } from "react-icons/fc";
 import { toast } from 'react-hot-toast';
 
+import './Login.css';
+
 
 const Login = () => {
 
@@ -37,7 +39,7 @@ const Login = () => {
 
     const handlPasswordReset = () => {
         passwordReset(userInfo.email)
-            .then(() => { 
+            .then(() => {
                 toast.success('Password reset email sent. Please check your password', {
                     id: 105,
                     position: "top-center",
@@ -185,8 +187,8 @@ const Login = () => {
                         errors?.passwordError && <p className='text-danger'><FaExclamationCircle className='me-1'></FaExclamationCircle>{errors?.passwordError}</p>
                     }
                 </Form.Group>
-                <p className='fs-6 '>Forget your Password? <Link onClick={handlPasswordReset} className='text-dark password-reset'>Please reset</Link></p>
-                <Button variant="success" className='fw-semibold  rounded-pill text-dark px-lg-5 py-lg-2 px-4 py-2' type="submit">
+                <p className='fs-6 '>Forget your Password? <Link onClick={handlPasswordReset} className='text-dark'><span className='password-reset'>Please reset</span></Link></p>
+                <Button variant="success" className='fw-semibold rounded-pill text-dark px-lg-5 py-lg-2 px-4 py-2' type="submit">
                     LOG IN
                 </Button>
             </Form>
