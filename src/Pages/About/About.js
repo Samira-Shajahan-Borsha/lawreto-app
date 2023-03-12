@@ -4,7 +4,7 @@ import { Container } from 'react-bootstrap';
 const About = () => {
     return (
         <Container className='mx-auto w-75 px-3 mb-5'>
-            <h1 className='text-center my-lg-5 my-3 text-success'>About Me</h1>
+            <h1 className='text-center my-lg-5 my-3 text-success'>About Samira</h1>
             <h3 className='mb-4'>How will you work hard to achieve your goal ?</h3>
             <ul>
                 <li>Experimenting and practicing are the finest ways to increase development skills. By building my own projects, contributing to open-source projects, and participating in coding competitions, I may gain experience and abilities. </li>
