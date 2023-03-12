@@ -2,7 +2,8 @@
 Lawreto app is a React Web App. Visitors can reserve legal services after proving their identity. Users may authenticate themselves by logging in using their email and password after registration. Users also have the option to log in with Google and Github. 
 
 ## Live Link
-()
+
+(https://lawreto-app-c4ae4.web.app/)
 
 ## Functionality & Features:
 
