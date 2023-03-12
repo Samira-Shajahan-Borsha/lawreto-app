@@ -5,9 +5,9 @@ const Blogs = () => {
     return (
         <div>
             <h1 className='text-center my-lg-5 my-3 text-success'>Blogs</h1>
-            <Container className=''>
+            <Container>
                 <Row xs={1} lg={2} md={2}>
-                    <Col className=''>
+                    <Col>
                         <h3>Difference between authorization and authentication: </h3>
                         <p className='text-justify'>Authentication and authorization are two related but distinct concepts in the field of information security.
 
