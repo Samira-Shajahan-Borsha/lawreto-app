@@ -69,7 +69,7 @@ const ServiceDetails = () => {
 
         const validMobileNumber = numberRegex.test(mobileNumberInput);
 
-        console.log(validMobileNumber);
+        // console.log(validMobileNumber);
 
         if (mobileNumberInput === '') {
             setErrors({ ...errors, mobileNumberError: 'You need to enter your mobile number.' });

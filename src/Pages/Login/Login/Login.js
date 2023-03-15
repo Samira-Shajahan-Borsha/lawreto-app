@@ -70,7 +70,7 @@ const Login = () => {
                 })
             })
             .catch(error => {
-                console.error(error);
+                // console.error(error);
                 // const errorMessage = error.message;
             })
     }
@@ -90,7 +90,7 @@ const Login = () => {
                 });
             })
             .catch(error => {
-                console.error(error);
+                // console.error(error);
                 // const errorMessage = error.message;
             })
 
@@ -107,7 +107,7 @@ const Login = () => {
         loginUser(email, password)
             .then((userCredential) => {
                 const user = userCredential.user;
-                console.log('login', user);
+                // console.log('login', user);
                 navigate(from, { replace: true });
                 toast.success('Log in successful', {
                     id: 105,
