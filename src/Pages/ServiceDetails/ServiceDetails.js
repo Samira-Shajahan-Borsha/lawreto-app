@@ -22,11 +22,11 @@ const ServiceDetails = () => {
 
 
 
-    console.log(user);
+    // console.log(user);
 
     const service = useLoaderData();
 
-    console.log(service);
+    // console.log(service);
 
     const { name } = service;
 

@@ -39,9 +39,9 @@ const Register = () => {
         // const name = form.name.value;
         const email = form.email.value;
         const password = form.password.value;
-        const confirmPassword = form.confirmPassword.value;
+        // const confirmPassword = form.confirmPassword.value;
 
-        console.log(email, password, confirmPassword);
+        // console.log(email, password, confirmPassword);
 
         createUser(email, password)
             .then(userCredential => {

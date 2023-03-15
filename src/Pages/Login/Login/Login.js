@@ -62,7 +62,7 @@ const Login = () => {
         signInWithGoogle(googleProvider)
             .then(result => {
                 const user = result.user;
-                console.log(user);
+                // console.log(user);
                 navigate(from, { replace: true });
                 toast.success('Log in successful with google', {
                     id: 105,
@@ -82,7 +82,7 @@ const Login = () => {
         signInWithGithub(githubProvider)
             .then(result => {
                 const user = result.user;
-                console.log(user);
+                // console.log(user);
                 navigate(from, { replace: true });
                 toast.success('Log in successful with github', {
                     id: 105,
@@ -116,7 +116,7 @@ const Login = () => {
                 form.reset();
             })
             .catch(error => {
-                console.error(error);
+                // console.error(error);
                 const errorMessage = error.message;
                 if (errorMessage.includes('auth/user-not-found')) {
                     toast.error('Incorrect email or password', {
