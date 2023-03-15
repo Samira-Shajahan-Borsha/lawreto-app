@@ -13,7 +13,7 @@ import './Register.css';
 
 const Register = () => {
 
-    const { createUser } = useContext(AuthContext);
+    const { createUser, logOut } = useContext(AuthContext);
 
     const navigate = useNavigate();
 
@@ -48,6 +48,7 @@ const Register = () => {
                 const user = userCredential.user;
                 console.log(user);
                 form.reset();
+                logOut();
                 navigate('/login');
                 toast.success('Account registration successful. Please log in.', {
                     id: 107,
